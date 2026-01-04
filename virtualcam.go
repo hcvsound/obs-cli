@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"strconv"
 
 	"github.com/spf13/cobra"
 )
@@ -49,32 +48,33 @@ var (
 )
 
 func starStopVirtualCam() error {
-	_, err := client.VirtualCam.StartStopVirtualCam()
+	_, err := client.Outputs.ToggleVirtualCam()
 	return err
 }
 
 func startVirtualCam() error {
-	_, err := client.VirtualCam.StartVirtualCam()
+	_, err := client.Outputs.StartVirtualCam()
 	return err
 }
 
 func stopVirtualCam() error {
-	_, err := client.VirtualCam.StopVirtualCam()
+	_, err := client.Outputs.StopVirtualCam()
 	return err
 }
 
 func virtualCamStatus() error {
-	r, err := client.VirtualCam.GetVirtualCamStatus()
+	r, err := client.Outputs.GetVirtualCamStatus()
 	if err != nil {
 		return err
 	}
 
-	fmt.Printf("Virtual camera: %s\n", strconv.FormatBool(r.IsVirtualCam))
-	if !r.IsVirtualCam {
-		return nil
+	fmt.Print("Virtual camera: ")
+	if !r.OutputActive {
+		fmt.Print("not ")
 	}
+	fmt.Println("active")
 
-	fmt.Printf("Timecode: %s\n", r.VirtualCamTimecode)
+	// fmt.Printf("Timecode: %s\n", r.VirtualCamTimecode)	TODO: actually obtain this
 	return nil
 }
 

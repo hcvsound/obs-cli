@@ -4,7 +4,8 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/andreykaipov/goobs/api/requests/sources"
+	"github.com/andreykaipov/goobs/api/requests/inputs"
+	"github.com/davecgh/go-spew/spew"
 	"github.com/spf13/cobra"
 )
 
@@ -36,47 +37,40 @@ var (
 	}
 )
 
-func listSources() error {
-	/*
-		{
-			req := obsws.NewGetSourcesListRequest()
-			resp, err := req.SendReceive(client)
-			if err != nil {
-				return err
-			}
-
-			fmt.Println("Sources\n=======\n")
-			for _, v := range resp.Sources {
-				spew.Dump(v)
-			}
-			fmt.Println()
-		}
-	*/
-
-	{
-		resp, err := client.Sources.GetSpecialSources()
-		if err != nil {
-			return err
-		}
-
-		fmt.Println("Special Sources")
-		fmt.Println("===============")
-		fmt.Printf("Desktop1: %s\n", resp.Desktop1)
-		fmt.Printf("Desktop2: %s\n", resp.Desktop2)
-		fmt.Printf("Mic1: %s\n", resp.Mic1)
-		fmt.Printf("Mic2: %s\n", resp.Mic2)
-		fmt.Printf("Mic3: %s\n", resp.Mic3)
+func listSources() error { //TODO: this should be "listInputs()"
+	ilResp, err := client.Inputs.GetInputList()
+	if err != nil {
+		return err
 	}
+
+	fmt.Println("Sources\n=======")
+	for _, v := range ilResp.Inputs {
+		spew.Dump(v)
+	}
+	fmt.Println()
+
+	spResp, err := client.Inputs.GetSpecialInputs()
+	if err != nil {
+		return err
+	}
+
+	fmt.Println("Special Sources")
+	fmt.Println("===============")
+	fmt.Printf("Desktop1: %s\n", spResp.Desktop1)
+	fmt.Printf("Desktop2: %s\n", spResp.Desktop2)
+	fmt.Printf("Mic1: %s\n", spResp.Mic1)
+	fmt.Printf("Mic2: %s\n", spResp.Mic2)
+	fmt.Printf("Mic3: %s\n", spResp.Mic3)
 
 	return nil
 }
 
-func toggleMute(source string) error {
-	p := sources.ToggleMuteParams{
-		Source: source,
+func toggleMute(inputName string) error {
+	par := &inputs.ToggleInputMuteParams{
+		InputName: &inputName,
 	}
 
-	_, err := client.Sources.ToggleMute(&p)
+	_, err := client.Inputs.ToggleInputMute(par)
 	return err
 }
 
