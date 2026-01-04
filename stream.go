@@ -5,45 +5,45 @@ import (
 	"strconv"
 
 	"github.com/andreykaipov/goobs/api/requests/streaming"
-	"github.com/muesli/coral"
+	"github.com/spf13/cobra"
 )
 
 var (
-	streamCmd = &coral.Command{
+	streamCmd = &cobra.Command{
 		Use:   "stream",
 		Short: "manage streams",
 		Long:  `The stream command manages streams`,
 		RunE:  nil,
 	}
 
-	startStopStreamCmd = &coral.Command{
+	startStopStreamCmd = &cobra.Command{
 		Use:   "toggle",
 		Short: "Toggle streaming",
-		RunE: func(cmd *coral.Command, args []string) error {
+		RunE: func(cmd *cobra.Command, args []string) error {
 			return startStopStream()
 		},
 	}
 
-	startStreamCmd = &coral.Command{
+	startStreamCmd = &cobra.Command{
 		Use:   "start",
 		Short: "Starts streaming",
-		RunE: func(cmd *coral.Command, args []string) error {
+		RunE: func(cmd *cobra.Command, args []string) error {
 			return startStream()
 		},
 	}
 
-	stopStreamCmd = &coral.Command{
+	stopStreamCmd = &cobra.Command{
 		Use:   "stop",
 		Short: "Stops streaming",
-		RunE: func(cmd *coral.Command, args []string) error {
+		RunE: func(cmd *cobra.Command, args []string) error {
 			return stopStream()
 		},
 	}
 
-	streamStatusCmd = &coral.Command{
+	streamStatusCmd = &cobra.Command{
 		Use:   "status",
 		Short: "Reports streaming status",
-		RunE: func(cmd *coral.Command, args []string) error {
+		RunE: func(cmd *cobra.Command, args []string) error {
 			return streamStatus()
 		},
 	}

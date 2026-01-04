@@ -5,13 +5,13 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/muesli/coral"
+	"github.com/spf13/cobra"
 )
 
-var countdownCmd = &coral.Command{
+var countdownCmd = &cobra.Command{
 	Use:   "countdown",
 	Short: "Triggers a countdown and continuously updates a label with the remaining time",
-	RunE: func(cmd *coral.Command, args []string) error {
+	RunE: func(cmd *cobra.Command, args []string) error {
 		if len(args) < 2 {
 			return errors.New("countdown requires a label and the countdown in seconds")
 		}

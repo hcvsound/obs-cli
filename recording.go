@@ -6,74 +6,74 @@ import (
 	"strconv"
 
 	"github.com/dustin/go-humanize"
-	"github.com/muesli/coral"
+	"github.com/spf13/cobra"
 )
 
 var (
-	recordingCmd = &coral.Command{
+	recordingCmd = &cobra.Command{
 		Use:   "recording",
 		Short: "manage recordings",
 		Long:  `The recording command manages recordings`,
 		RunE:  nil,
 	}
 
-	startStopRecordingCmd = &coral.Command{
+	startStopRecordingCmd = &cobra.Command{
 		Use:   "toggle",
 		Short: "Toggle recording",
-		RunE: func(cmd *coral.Command, args []string) error {
+		RunE: func(cmd *cobra.Command, args []string) error {
 			return startStopRecording()
 		},
 	}
 
-	startRecordingCmd = &coral.Command{
+	startRecordingCmd = &cobra.Command{
 		Use:   "start",
 		Short: "Starts recording",
-		RunE: func(cmd *coral.Command, args []string) error {
+		RunE: func(cmd *cobra.Command, args []string) error {
 			return startRecording()
 		},
 	}
 
-	stopRecordingCmd = &coral.Command{
+	stopRecordingCmd = &cobra.Command{
 		Use:   "stop",
 		Short: "Stops recording",
-		RunE: func(cmd *coral.Command, args []string) error {
+		RunE: func(cmd *cobra.Command, args []string) error {
 			return stopRecording()
 		},
 	}
 
-	pauseRecordingCmd = &coral.Command{
+	pauseRecordingCmd = &cobra.Command{
 		Use:   "pause",
 		Short: "manage paused state",
 	}
 
-	enablePauseRecordingCmd = &coral.Command{
+	enablePauseRecordingCmd = &cobra.Command{
 		Use:   "enable",
 		Short: "Pause recording",
-		RunE: func(cmd *coral.Command, args []string) error {
+		RunE: func(cmd *cobra.Command, args []string) error {
 			return pauseRecording()
 		},
 	}
 
-	resumePauseRecordingCmd = &coral.Command{
+	resumePauseRecordingCmd = &cobra.Command{
 		Use:   "resume",
 		Short: "Resume recording",
-		RunE: func(cmd *coral.Command, args []string) error {
+		RunE: func(cmd *cobra.Command, args []string) error {
 			return resumeRecording()
 		},
 	}
 
-	togglePauseRecordingCmd = &coral.Command{
+	togglePauseRecordingCmd = &cobra.Command{
 		Use:   "toggle",
 		Short: "Pause/resume recording",
-		RunE: func(cmd *coral.Command, args []string) error {
+		RunE: func(cmd *cobra.Command, args []string) error {
 			return pauseResumeRecording()
 		},
 	}
 
-	recordingStatusCmd = &coral.Command{
+	recordingStatusCmd = &cobra.Command{
 		Use:   "status",
 		Short: "Reports recording status",
-		RunE: func(cmd *coral.Command, args []string) error {
+		RunE: func(cmd *cobra.Command, args []string) error {
 			return recordingStatus()
 		},
 	}

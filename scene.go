@@ -7,21 +7,21 @@ import (
 
 	"github.com/andreykaipov/goobs/api/requests/scenes"
 	studiomode "github.com/andreykaipov/goobs/api/requests/studio_mode"
-	"github.com/muesli/coral"
+	"github.com/spf13/cobra"
 )
 
 var (
-	sceneCmd = &coral.Command{
+	sceneCmd = &cobra.Command{
 		Use:   "scene",
 		Short: "manage scenes",
 		Long:  `The scene command manages scenes`,
 		RunE:  nil,
 	}
 
-	currentSceneCmd = &coral.Command{
+	currentSceneCmd = &cobra.Command{
 		Use:   "current",
 		Short: "Switch program to a different scene",
-		RunE: func(cmd *coral.Command, args []string) error {
+		RunE: func(cmd *cobra.Command, args []string) error {
 			if len(args) < 1 {
 				return errors.New("current requires a scene name as argument")
 			}
@@ -29,26 +29,26 @@ var (
 		},
 	}
 
-	listSceneCmd = &coral.Command{
+	listSceneCmd = &cobra.Command{
 		Use:   "list",
 		Short: "List all scene names",
-		RunE: func(cmd *coral.Command, args []string) error {
+		RunE: func(cmd *cobra.Command, args []string) error {
 			return listScenes()
 		},
 	}
 
-	getSceneCmd = &coral.Command{
+	getSceneCmd = &cobra.Command{
 		Use:   "get",
 		Short: "Get the current scene",
-		RunE: func(cmd *coral.Command, args []string) error {
+		RunE: func(cmd *cobra.Command, args []string) error {
 			return getScene()
 		},
 	}
 
-	previewSceneCmd = &coral.Command{
+	previewSceneCmd = &cobra.Command{
 		Use:   "preview",
 		Short: "Switch preview to a different scene (studio mode must be enabled)",
-		RunE: func(cmd *coral.Command, args []string) error {
+		RunE: func(cmd *cobra.Command, args []string) error {
 			if len(args) < 1 {
 				return errors.New("preview requires a scene name as argument")
 			}
@@ -56,10 +56,10 @@ var (
 		},
 	}
 
-	switchSceneCmd = &coral.Command{
+	switchSceneCmd = &cobra.Command{
 		Use:   "switch",
 		Short: "Switch program or preview in studio mode to a different scene",
-		RunE: func(cmd *coral.Command, args []string) error {
+		RunE: func(cmd *cobra.Command, args []string) error {
 			if len(args) < 1 {
 				return errors.New("switch requires a scene name as argument")
 			}

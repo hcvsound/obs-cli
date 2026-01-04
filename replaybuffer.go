@@ -4,45 +4,45 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/muesli/coral"
+	"github.com/spf13/cobra"
 )
 
 var (
-	replayBufferCmd = &coral.Command{
+	replayBufferCmd = &cobra.Command{
 		Use:   "replaybuffer",
 		Short: "manage replay buffer",
 		Long:  `The replaybuffer command manages the replay buffer`,
 		RunE:  nil,
 	}
 
-	startReplayBufferCmd = &coral.Command{
+	startReplayBufferCmd = &cobra.Command{
 		Use:   "start",
 		Short: "Starts replay buffer",
-		RunE: func(cmd *coral.Command, args []string) error {
+		RunE: func(cmd *cobra.Command, args []string) error {
 			return startReplayBuffer()
 		},
 	}
 
-	stopReplayBufferCmd = &coral.Command{
+	stopReplayBufferCmd = &cobra.Command{
 		Use:   "stop",
 		Short: "Stops replay buffer",
-		RunE: func(cmd *coral.Command, args []string) error {
+		RunE: func(cmd *cobra.Command, args []string) error {
 			return stopReplayBuffer()
 		},
 	}
 
-	saveReplayBufferCmd = &coral.Command{
+	saveReplayBufferCmd = &cobra.Command{
 		Use:   "save",
 		Short: "Saves replay buffer",
-		RunE: func(cmd *coral.Command, args []string) error {
+		RunE: func(cmd *cobra.Command, args []string) error {
 			return saveReplayBuffer()
 		},
 	}
 
-	replayBufferStatusCmd = &coral.Command{
+	replayBufferStatusCmd = &cobra.Command{
 		Use:   "status",
 		Short: "Reports replay buffer status",
-		RunE: func(cmd *coral.Command, args []string) error {
+		RunE: func(cmd *cobra.Command, args []string) error {
 			return replayBufferStatus()
 		},
 	}

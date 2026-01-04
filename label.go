@@ -4,21 +4,21 @@ import (
 	"errors"
 
 	"github.com/andreykaipov/goobs/api/requests/sources"
-	"github.com/muesli/coral"
+	"github.com/spf13/cobra"
 )
 
 var (
-	labelCmd = &coral.Command{
+	labelCmd = &cobra.Command{
 		Use:   "label",
 		Short: "manage text labels",
 		Long:  `The label command manages text labels`,
 		RunE:  nil,
 	}
 
-	textCmd = &coral.Command{
+	textCmd = &cobra.Command{
 		Use:   "text",
 		Short: "Changes a text label",
-		RunE: func(cmd *coral.Command, args []string) error {
+		RunE: func(cmd *cobra.Command, args []string) error {
 			if len(args) < 2 {
 				return errors.New("text requires a source and the new text")
 			}
