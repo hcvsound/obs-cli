@@ -38,7 +38,7 @@ func init() {
 	cobra.OnInitialize(connectOBS)
 	rootCmd.PersistentFlags().StringVar(&host, "host", "localhost", "host to connect to")
 	rootCmd.PersistentFlags().StringVar(&password, "password", "", "password for connection")
-	rootCmd.PersistentFlags().Uint32VarP(&port, "port", "p", 4444, "port to connect to")
+	rootCmd.PersistentFlags().Uint32VarP(&port, "port", "p", 4455, "port to connect to")
 }
 
 func getUserAgent() string {
